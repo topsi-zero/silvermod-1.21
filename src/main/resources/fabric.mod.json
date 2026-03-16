@@ -3,9 +3,9 @@
 	"id": "silvermod",
 	"version": "${version}",
 	"name": "Silvermod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "This mod introduces the element silver to Minecraft!",
 	"authors": [
-		"Me!"
+		"topsi-zero"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
