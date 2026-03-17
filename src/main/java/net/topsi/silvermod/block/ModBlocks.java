@@ -8,13 +8,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.topsi.silvermod.Silvermod;
 
 public class ModBlocks {
 
     public static final Block BLOCK_OF_SILVER = registerBlock("block_of_silver",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()));
+
+    public static final Block SILVER_ORE = registerBlock("silver_ore",
             new Block(AbstractBlock.Settings.create()
                     .strength(2f)
                     .requiresTool()));
@@ -33,6 +37,7 @@ public class ModBlocks {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.add(ModBlocks.BLOCK_OF_SILVER);
+            entries.add(ModBlocks.SILVER_ORE);
         });
     }
 

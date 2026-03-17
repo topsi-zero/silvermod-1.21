@@ -20,6 +20,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SILVER_INGOT);
                         entries.add(ModItems.SILVER_NUGGET);
                         entries.add(ModBlocks.BLOCK_OF_SILVER);
+                        entries.add(ModBlocks.SILVER_ORE);
 
                     }).build());
 
