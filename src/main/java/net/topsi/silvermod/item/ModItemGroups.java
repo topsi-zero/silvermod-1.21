@@ -15,7 +15,7 @@ public class ModItemGroups {
     public static final ItemGroup SILVER = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(Silvermod.MOD_ID, "silver_items"),
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.SILVER_INGOT))
-                    .displayName(Text.translatable("itemgroup.tutorialmod.silver_items"))
+                    .displayName(Text.translatable("itemgroup.silvermod.silver_items"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.SILVER_INGOT);
                         entries.add(ModItems.SILVER_NUGGET);
