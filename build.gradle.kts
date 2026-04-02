@@ -76,3 +76,21 @@ publishing {
 		// retrieving dependencies.
 	}
 }
+
+loom {
+	runs {
+		create("datagen") {
+			client()
+			name = "Data Generation"
+
+			vmArgs(
+				"-Dfabric-api.datagen",
+				"-Dfabric-api.datagen.modid=silvermod",
+				"-Dfabric-api.datagen.output-dir=${file("src/generated/resources")}",
+				"-Dfabric-api.datagen.strict-validation"
+			)
+
+			runDir("build/datagen")
+		}
+	}
+}

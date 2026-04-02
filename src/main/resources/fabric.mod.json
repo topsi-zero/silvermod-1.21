@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"net.topsi.silvermod.Silvermod"
+		],
+		"fabric-datagen": [
+			"net.topsi.silvermod.SilvermodDataGenerator"
 		]
 	},
 	"mixins": [
