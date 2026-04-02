@@ -94,3 +94,11 @@ loom {
 		}
 	}
 }
+
+sourceSets {
+	main {
+		resources {
+			srcDir("src/generated/resources")
+		}
+	}
+}
