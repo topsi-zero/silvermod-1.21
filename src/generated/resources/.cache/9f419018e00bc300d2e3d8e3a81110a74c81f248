@@ -1,4 +1,6 @@
-// 1.21	2026-04-03T17:27:49.958758	Silvermod/Recipes
+// 1.21	2026-04-03T18:02:17.000367	Silvermod/Recipes
+6ad45442c0d20a93901a5e297399950ca61278e6 data/silvermod/recipe/silver_tnt.json
+35976fca1744b838f7cf6e8ee649162d5b6f39a8 data/silvermod/advancement/recipes/redstone/silver_tnt.json
 191bff3000405645964ff381593bb8065e339353 data/silvermod/advancement/recipes/misc/silver_ingot_from_blasting_silver_ore.json
 d0d42788d85cbe79aa7429e7b0628951a7b56f55 data/silvermod/recipe/block_of_silver.json
 dfe143b0a0f472fb768f196757c33eb44a91088f data/silvermod/recipe/silver_ingot_from_smelting_silver_ore.json

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "*": {
+      "item": "minecraft:sand"
+    },
+    "g": {
+      "item": "minecraft:gunpowder"
+    },
+    "s": {
+      "item": "silvermod:silver_ingot"
+    }
+  },
+  "pattern": [
+    "*g*",
+    "gsg",
+    "*g*"
+  ],
+  "result": {
+    "count": 1,
+    "id": "silvermod:silver_tnt"
+  }
+}
