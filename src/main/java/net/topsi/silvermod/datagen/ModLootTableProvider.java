@@ -27,7 +27,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(ModBlocks.BLOCK_OF_SILVER);
-
+        addDrop(ModBlocks.SILVER_TNT);
         addDrop(ModBlocks.SILVER_ORE, oreDrops(ModBlocks.SILVER_ORE, ModItems.SILVER_NUGGET));
     }
 

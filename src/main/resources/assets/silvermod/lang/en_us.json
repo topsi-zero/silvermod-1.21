@@ -3,6 +3,8 @@
   "item.silvermod.silver_nugget": "Silver Nugget",
 
   "block.silvermod.block_of_silver": "Block of Silver",
+  "block.silvermod.silver_ore": "Silver Ore",
+  "block.silvermod.silver_tnt": "Silver TnT",
 
   "itemgroup.silvermod.silver_items": "Silver"
 }

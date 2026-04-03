@@ -1,8 +1,11 @@
-// 1.21	2026-04-02T23:17:14.367704	Silvermod/Model Definitions
+// 1.21	2026-04-03T17:27:49.956885	Silvermod/Model Definitions
+382e1581a280ad44cabf440b96244a1cfd28f701 assets/silvermod/models/block/silver_tnt.json
+3273daf24132c9f24e5f57351de233087b08ad74 assets/silvermod/models/item/silver_tnt.json
 553dcb7ffb35c70a0b720bc2f5b1f29f3fd2363c assets/silvermod/models/item/block_of_silver.json
 331f4d99afb1be17b2df1b4cbe402bbfda1de2c4 assets/silvermod/models/block/silver_ore.json
 34b70265a8d5bd1220aef2ac138ebcd89ba57b5d assets/silvermod/models/item/silver_ingot.json
 b210fa2768c59ff284255b97f4f339036a985cf3 assets/silvermod/models/block/block_of_silver.json
+dabb9ee6f55fd0b5e194388638a8d695f0dfe431 assets/silvermod/blockstates/silver_tnt.json
 15c5655b0c3beaf3eee92e433f4d5e1aebbeb6ca assets/silvermod/blockstates/silver_ore.json
 f6714f7e921eef65d502374f76374603f8df5119 assets/silvermod/models/item/silver_nugget.json
 cb699cbb3e8758f0f24a1b98deccfe33789dfcab assets/silvermod/blockstates/block_of_silver.json
