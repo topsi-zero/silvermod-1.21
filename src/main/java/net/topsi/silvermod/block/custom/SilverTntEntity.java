@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.World.ExplosionSourceType;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
+import net.topsi.silvermod.block.ModBlocks;
 import org.jetbrains.annotations.Nullable;
 
 public class SilverTntEntity extends Entity implements Ownable {
@@ -41,7 +42,7 @@ public class SilverTntEntity extends Entity implements Ownable {
         this(EntityType.TNT, world);
         this.setPosition(x, y, z);
         double d = world.random.nextDouble() * (double)((float)Math.PI * 2F);
-        this.setVelocity(-Math.sin(d) * 0.02, (double)0.2F, -Math.cos(d) * 0.02);
+        this.setVelocity(-Math.sin(d) * 0.02, (double)1F, -Math.cos(d) * 0.02);
         this.setFuse(120);
         this.prevX = x;
         this.prevY = y;
@@ -93,9 +94,37 @@ public class SilverTntEntity extends Entity implements Ownable {
 
     private void explode() {
         float f = 4.0F;
-        ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.SMOKE, this.getX(), this.getBodyY(0.5), this.getZ(), 80000,  9, 9, 9, 1);
-        ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, this.getX(), this.getBodyY(0.5), this.getZ(), 500,  5, 5, 5, 0.5);
+        ((ServerWorld)this.getWorld()).spawnParticles(
+                ParticleTypes.SMOKE,
+                this.getX(),
+                this.getBodyY(0.5),
+                this.getZ(),
+                80000,
+                9,
+                9,
+                9,
+                1);
+        ((ServerWorld)this.getWorld()).spawnParticles(
+                ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                this.getX(),
+                this.getBodyY(0.5),
+                this.getZ(),
+                50,
+                9,
+                9,
+                9,
+                0.02);
+
         this.getWorld().createExplosion(this, Explosion.createDamageSource(this.getWorld(), this), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY((double)0.0625F), this.getZ(), 15.0F, true, ExplosionSourceType.TNT);
+        this.getWorld().spawnEntity(
+                new SilverTntEntity(
+                        this.getWorld(),
+                        this.getX() + 0.5,
+                        this.getY(),
+                        this.getZ() + 0.5,
+                        null
+                )
+        );
     }
 
     protected void writeCustomDataToNbt(NbtCompound nbt) {
