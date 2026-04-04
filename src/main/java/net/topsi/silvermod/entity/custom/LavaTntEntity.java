@@ -1,10 +1,8 @@
-package net.topsi.silvermod.block.custom;
+package net.topsi.silvermod.entity.custom;
 
-import java.util.Optional;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.Entity.MoveEffect;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -16,15 +14,14 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
-import net.minecraft.world.World.ExplosionSourceType;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
-import net.topsi.silvermod.block.ModBlocks;
 import org.jetbrains.annotations.Nullable;
 
-public class SilverTntEntity extends Entity implements Ownable {
+import java.util.Optional;
+
+public class LavaTntEntity extends Entity implements Ownable {
     private static final TrackedData<Integer> FUSE;
     private static final TrackedData<BlockState> BLOCK_STATE;
     private static final ExplosionBehavior TELEPORTED_EXPLOSION_BEHAVIOR;
@@ -33,16 +30,16 @@ public class SilverTntEntity extends Entity implements Ownable {
     private LivingEntity causingEntity;
     private boolean teleported;
 
-    public SilverTntEntity(EntityType<? extends net.minecraft.entity.TntEntity> entityType, World world) {
+    public LavaTntEntity(EntityType<? extends TntEntity> entityType, World world) {
         super(entityType, world);
         this.intersectionChecked = true;
     }
 
-    public SilverTntEntity(World world, double x, double y, double z, @Nullable LivingEntity igniter) {
+    public LavaTntEntity(World world, double x, double y, double z, @Nullable LivingEntity igniter) {
         this(EntityType.TNT, world);
         this.setPosition(x, y, z);
         double d = world.random.nextDouble() * (double)((float)Math.PI * 2F);
-        this.setVelocity(-Math.sin(d) * 0.02, (double)1F, -Math.cos(d) * 0.02);
+        this.setVelocity(-Math.sin(d) * 0.02, (double)0.01F, -Math.cos(d) * 0.02);
         this.setFuse(120);
         this.prevX = x;
         this.prevY = y;
@@ -55,7 +52,7 @@ public class SilverTntEntity extends Entity implements Ownable {
         builder.add(BLOCK_STATE, Blocks.TNT.getDefaultState());
     }
 
-    protected Entity.MoveEffect getMoveEffect() {
+    protected MoveEffect getMoveEffect() {
         return MoveEffect.NONE;
     }
 
@@ -114,17 +111,6 @@ public class SilverTntEntity extends Entity implements Ownable {
                 9,
                 9,
                 0.02);
-
-        this.getWorld().createExplosion(this, Explosion.createDamageSource(this.getWorld(), this), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY((double)0.0625F), this.getZ(), 15.0F, true, ExplosionSourceType.TNT);
-        this.getWorld().spawnEntity(
-                new SilverTntEntity(
-                        this.getWorld(),
-                        this.getX() + 0.5,
-                        this.getY(),
-                        this.getZ() + 0.5,
-                        null
-                )
-        );
     }
 
     protected void writeCustomDataToNbt(NbtCompound nbt) {
@@ -147,7 +133,7 @@ public class SilverTntEntity extends Entity implements Ownable {
 
     public void copyFrom(Entity original) {
         super.copyFrom(original);
-        if (original instanceof net.minecraft.entity.TntEntity tntEntity) {
+        if (original instanceof TntEntity tntEntity) {
             this.causingEntity = tntEntity.getOwner();
         }
 
@@ -174,8 +160,8 @@ public class SilverTntEntity extends Entity implements Ownable {
     }
 
     static {
-        FUSE = DataTracker.registerData(net.topsi.silvermod.block.custom.SilverTntEntity.class, TrackedDataHandlerRegistry.INTEGER);
-        BLOCK_STATE = DataTracker.registerData(net.topsi.silvermod.block.custom.SilverTntEntity.class, TrackedDataHandlerRegistry.BLOCK_STATE);
+        FUSE = DataTracker.registerData(LavaTntEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        BLOCK_STATE = DataTracker.registerData(LavaTntEntity.class, TrackedDataHandlerRegistry.BLOCK_STATE);
         TELEPORTED_EXPLOSION_BEHAVIOR = new ExplosionBehavior() {
             public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
                 return state.isOf(Blocks.NETHER_PORTAL) ? false : super.canDestroyBlock(explosion, world, pos, state, power);

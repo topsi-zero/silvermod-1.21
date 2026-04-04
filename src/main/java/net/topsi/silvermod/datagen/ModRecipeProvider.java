@@ -41,5 +41,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('*', Blocks.SAND)
                 .criterion(hasItem(Items.GUNPOWDER), conditionsFromItem(ModBlocks.SILVER_TNT))
                 .offerTo(recipeExporter);  // shaped recipies
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_TNT_ARROW)
+                .pattern(" g ")
+                .pattern("gag")
+                .pattern(" g ")
+                .input('a', Items.ARROW)
+                .input('g', Items.GUNPOWDER)
+                .criterion(hasItem(Items.GUNPOWDER), conditionsFromItem(ModBlocks.SILVER_TNT))
+                .offerTo(recipeExporter);  // shaped recipies
     }
 }

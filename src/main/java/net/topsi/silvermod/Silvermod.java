@@ -2,6 +2,7 @@ package net.topsi.silvermod;
 
 import net.fabricmc.api.ModInitializer;
 import net.topsi.silvermod.block.ModBlocks;
+import net.topsi.silvermod.entity.ModEntities;
 import net.topsi.silvermod.item.ModItemGroups;
 import net.topsi.silvermod.item.ModItems;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ public class Silvermod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModEntities.registerModEntities();
 		ModBlocks.registerModBlocks();
 		ModItemGroups.registerItemGroups();
 	}

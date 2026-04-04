@@ -24,6 +24,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.SILVER_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.SILVER_NUGGET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SILVER_TNT_ARROW, Models.GENERATED);
 
     }
 }

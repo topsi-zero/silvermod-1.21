@@ -20,7 +20,9 @@
 		],
 		"fabric-datagen": [
 			"net.topsi.silvermod.SilvermodDataGenerator"
-		]
+		],
+		"client": ["net.topsi.silvermod.SilvermodClient"]
+
 	},
 	"mixins": [
 		"silvermod.mixins.json"

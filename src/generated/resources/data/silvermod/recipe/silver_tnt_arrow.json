@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "a": {
+      "item": "minecraft:arrow"
+    },
+    "g": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "pattern": [
+    " g ",
+    "gag",
+    " g "
+  ],
+  "result": {
+    "count": 1,
+    "id": "silvermod:silver_tnt_arrow"
+  }
+}
