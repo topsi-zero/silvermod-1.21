@@ -13,6 +13,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.TeleportTarget;
@@ -25,10 +26,8 @@ import org.jetbrains.annotations.Nullable;
 public class SilverTntEntity extends Entity implements Ownable {
     private static final TrackedData<Integer> FUSE;
     private static final TrackedData<BlockState> BLOCK_STATE;
-    private static final int DEFAULT_FUSE = 80;
-    private static final String BLOCK_STATE_NBT_KEY = "block_state";
-    public static final String FUSE_NBT_KEY = "fuse";
     private static final ExplosionBehavior TELEPORTED_EXPLOSION_BEHAVIOR;
+
     @Nullable
     private LivingEntity causingEntity;
     private boolean teleported;
@@ -94,7 +93,9 @@ public class SilverTntEntity extends Entity implements Ownable {
 
     private void explode() {
         float f = 4.0F;
-        this.getWorld().createExplosion(this, Explosion.createDamageSource(this.getWorld(), this), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY((double)0.0625F), this.getZ(), 12.0F, false, ExplosionSourceType.TNT);
+        ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.SMOKE, this.getX(), this.getBodyY(0.5), this.getZ(), 80000,  9, 9, 9, 1);
+        ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, this.getX(), this.getBodyY(0.5), this.getZ(), 500,  5, 5, 5, 0.5);
+        this.getWorld().createExplosion(this, Explosion.createDamageSource(this.getWorld(), this), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY((double)0.0625F), this.getZ(), 15.0F, true, ExplosionSourceType.TNT);
     }
 
     protected void writeCustomDataToNbt(NbtCompound nbt) {
