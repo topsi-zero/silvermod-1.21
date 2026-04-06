@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class SilverTntArrowRenderer extends ProjectileEntityRenderer<SilverTntArrowEntity> {
 
-    public static final Identifier TEXTURE = Identifier.of("minecraft", "textures/entity/projectiles/arrow.png");
+    public static final Identifier TEXTURE = Identifier.of("silvermod", "textures/entity/silver_tnt_arrow.png");
 
     public SilverTntArrowRenderer(EntityRendererFactory.Context context) {
         super(context);
@@ -20,13 +20,11 @@ public class SilverTntArrowRenderer extends ProjectileEntityRenderer<SilverTntAr
 
     @Override
     public void render(SilverTntArrowEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        // You can delegate to vanilla arrow rendering if needed
         super.render(entity, yaw, tickDelta, matrices, vertexConsumers, light);
     }
 
     @Override
     public Identifier getTexture(SilverTntArrowEntity entity) {
-        // Always use normal arrow texture, or make a TNT arrow texture
         return TEXTURE;
     }
 }
