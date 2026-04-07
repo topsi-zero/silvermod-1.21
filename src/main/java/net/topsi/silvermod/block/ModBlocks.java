@@ -10,6 +10,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.topsi.silvermod.Silvermod;
+import net.topsi.silvermod.block.custom.SilverCanonTnt;
 import net.topsi.silvermod.block.custom.SilverTntBlock;
 
 public class ModBlocks {
@@ -26,6 +27,10 @@ public class ModBlocks {
 
     public static final Block SILVER_TNT = registerBlock("silver_tnt",
             new SilverTntBlock(AbstractBlock.Settings.create()
+                    .strength(0.1f)));
+
+    public static final Block SILVER_CANON_TNT = registerBlock("silver_canon_tnt",
+            new SilverCanonTnt(AbstractBlock.Settings.create()
                     .strength(0.1f)));
 
     private static Block registerBlock(String name, Block block) {

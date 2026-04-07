@@ -25,10 +25,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.explosion.Explosion;
-import net.topsi.silvermod.entity.custom.LavaTntEntity;
+import net.topsi.silvermod.entity.custom.SilverCanonTntEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class LavaTntBlock extends Block {
+public class SilverCanonTnt extends Block {
     public static final MapCodec<net.minecraft.block.TntBlock> CODEC = createCodec(net.minecraft.block.TntBlock::new);
     public static final BooleanProperty UNSTABLE;
 
@@ -36,7 +36,7 @@ public class LavaTntBlock extends Block {
         return CODEC;
     }
 
-    public LavaTntBlock(Settings settings) {
+    public SilverCanonTnt(Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)this.getDefaultState().with(UNSTABLE, false));
     }
@@ -69,7 +69,7 @@ public class LavaTntBlock extends Block {
 
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
         if (!world.isClient) {
-            LavaTntEntity tntEntity = new LavaTntEntity(world, (double)pos.getX() + (double)0.5F, (double)pos.getY(), (double)pos.getZ() + (double)0.5F, explosion.getCausingEntity());
+            SilverCanonTntEntity tntEntity = new SilverCanonTntEntity(world, (double)pos.getX() + (double)0.5F, (double)pos.getY(), (double)pos.getZ() + (double)0.5F, explosion.getCausingEntity());
             int i = tntEntity.getFuse();
             tntEntity.setFuse((short)(world.random.nextInt(i / 4) + i / 8));
             world.spawnEntity(tntEntity);
@@ -82,7 +82,7 @@ public class LavaTntBlock extends Block {
 
     private static void primeTnt(World world, BlockPos pos, @Nullable LivingEntity igniter) {
         if (!world.isClient) {
-            LavaTntEntity tntEntity = new LavaTntEntity(world, (double)pos.getX() + (double)0.5F, (double)pos.getY(), (double)pos.getZ() + (double)0.5F, igniter);
+            SilverCanonTntEntity tntEntity = new SilverCanonTntEntity(world, (double)pos.getX() + (double)0.5F, (double)pos.getY(), (double)pos.getZ() + (double)0.5F, igniter);
             world.spawnEntity(tntEntity);
             world.playSound((PlayerEntity)null, tntEntity.getX(), tntEntity.getY(), tntEntity.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.emitGameEvent(igniter, GameEvent.PRIME_FUSE, pos);

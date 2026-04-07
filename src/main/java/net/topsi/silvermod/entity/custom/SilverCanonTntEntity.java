@@ -15,13 +15,14 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.World.ExplosionSourceType;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class LavaTntEntity extends Entity implements Ownable {
+public class SilverCanonTntEntity extends Entity implements Ownable {
     private static final TrackedData<Integer> FUSE;
     private static final TrackedData<BlockState> BLOCK_STATE;
     private static final ExplosionBehavior TELEPORTED_EXPLOSION_BEHAVIOR;
@@ -30,16 +31,16 @@ public class LavaTntEntity extends Entity implements Ownable {
     private LivingEntity causingEntity;
     private boolean teleported;
 
-    public LavaTntEntity(EntityType<? extends TntEntity> entityType, World world) {
+    public SilverCanonTntEntity(EntityType<? extends TntEntity> entityType, World world) {
         super(entityType, world);
         this.intersectionChecked = true;
     }
 
-    public LavaTntEntity(World world, double x, double y, double z, @Nullable LivingEntity igniter) {
+    public SilverCanonTntEntity(World world, double x, double y, double z, @Nullable LivingEntity igniter) {
         this(EntityType.TNT, world);
         this.setPosition(x, y, z);
         double d = world.random.nextDouble() * (double)((float)Math.PI * 2F);
-        this.setVelocity(-Math.sin(d) * 0.02, (double)0.01F, -Math.cos(d) * 0.02);
+        presetVelocity();
         this.setFuse(120);
         this.prevX = x;
         this.prevY = y;
@@ -56,6 +57,10 @@ public class LavaTntEntity extends Entity implements Ownable {
         return MoveEffect.NONE;
     }
 
+    public void presetVelocity() {
+        this.setVelocity(2.5f, 0.75f, 0F);
+    }
+
     public boolean canHit() {
         return !this.isRemoved();
     }
@@ -68,24 +73,14 @@ public class LavaTntEntity extends Entity implements Ownable {
         this.tickPortalTeleportation();
         this.applyGravity();
         this.move(MovementType.SELF, this.getVelocity());
-        this.setVelocity(this.getVelocity().multiply(0.98));
-        if (this.isOnGround()) {
-            this.setVelocity(this.getVelocity().multiply(0.7, (double)-0.5F, 0.7));
-        }
 
-        int i = this.getFuse() - 1;
-        this.setFuse(i);
-        if (i <= 0) {
+        if (this.isOnGround()) {
             this.discard();
             if (!this.getWorld().isClient) {
                 this.explode();
             }
-        } else {
-            this.updateWaterState();
-            if (this.getWorld().isClient) {
-                this.getWorld().addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + (double)0.5F, this.getZ(), (double)0.0F, (double)0.0F, (double)0.0F);
-            }
         }
+
 
     }
 
@@ -111,6 +106,8 @@ public class LavaTntEntity extends Entity implements Ownable {
                 9,
                 9,
                 0.02);
+
+        this.getWorld().createExplosion(this, Explosion.createDamageSource(this.getWorld(), this), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY((double)0.0625F), this.getZ(), 15.0F, true, ExplosionSourceType.TNT);
     }
 
     protected void writeCustomDataToNbt(NbtCompound nbt) {
@@ -160,8 +157,8 @@ public class LavaTntEntity extends Entity implements Ownable {
     }
 
     static {
-        FUSE = DataTracker.registerData(LavaTntEntity.class, TrackedDataHandlerRegistry.INTEGER);
-        BLOCK_STATE = DataTracker.registerData(LavaTntEntity.class, TrackedDataHandlerRegistry.BLOCK_STATE);
+        FUSE = DataTracker.registerData(SilverCanonTntEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        BLOCK_STATE = DataTracker.registerData(SilverCanonTntEntity.class, TrackedDataHandlerRegistry.BLOCK_STATE);
         TELEPORTED_EXPLOSION_BEHAVIOR = new ExplosionBehavior() {
             public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
                 return state.isOf(Blocks.NETHER_PORTAL) ? false : super.canDestroyBlock(explosion, world, pos, state, power);
