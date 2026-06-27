@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heavy_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "silvermod:silver_mace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "silvermod:silver_mace"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_heavy_core"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "silvermod:silver_mace"
+    ]
+  }
+}

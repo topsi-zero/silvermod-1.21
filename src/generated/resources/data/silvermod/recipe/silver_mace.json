@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "h": {
+      "item": "minecraft:heavy_core"
+    },
+    "i": {
+      "item": "silvermod:silver_ingot"
+    },
+    "r": {
+      "item": "minecraft:breeze_rod"
+    }
+  },
+  "pattern": [
+    "  i",
+    " h ",
+    "r  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "silvermod:silver_mace"
+  }
+}

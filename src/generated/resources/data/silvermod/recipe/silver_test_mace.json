@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "c": {
+      "item": "minecraft:command_block"
+    },
+    "h": {
+      "item": "minecraft:heavy_core"
+    },
+    "r": {
+      "item": "minecraft:breeze_rod"
+    }
+  },
+  "pattern": [
+    "  c",
+    " h ",
+    "r  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "silvermod:silver_test_mace"
+  }
+}

@@ -50,5 +50,35 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('g', Items.GUNPOWDER)
                 .criterion(hasItem(Items.GUNPOWDER), conditionsFromItem(ModBlocks.SILVER_TNT))
                 .offerTo(recipeExporter);  // shaped recipies
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_MACE)
+                .pattern("  i")
+                .pattern(" h ")
+                .pattern("r  ")
+                .input('h', Items.HEAVY_CORE)
+                .input('r', Items.BREEZE_ROD)
+                .input('i', ModItems.SILVER_INGOT)
+                .criterion(hasItem(Items.HEAVY_CORE), conditionsFromItem(ModItems.SILVER_MACE))
+                .offerTo(recipeExporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_BLAZE_MACE)
+                .pattern("  i")
+                .pattern(" h ")
+                .pattern("r  ")
+                .input('h', Items.HEAVY_CORE)
+                .input('r', Items.BLAZE_ROD)
+                .input('i', ModItems.SILVER_INGOT)
+                .criterion(hasItem(Items.HEAVY_CORE), conditionsFromItem(ModItems.SILVER_BLAZE_MACE))
+                .offerTo(recipeExporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_TEST_MACE)
+                .pattern("  c")
+                .pattern(" h ")
+                .pattern("r  ")
+                .input('c', Items.COMMAND_BLOCK)
+                .input('r', Items.BREEZE_ROD)
+                .input('h', Items.HEAVY_CORE)
+                .criterion(hasItem(Items.COMMAND_BLOCK), conditionsFromItem(ModItems.SILVER_BLAZE_MACE))
+                .offerTo(recipeExporter);
     }
 }
